@@ -1,0 +1,17 @@
+﻿@model TrainPlaceViewModel
+<form asp-action="Details" asp-route-dateTime="@ViewBag.Date" method="post">
+    @foreach (var s in Model.trainPlaces)
+    {
+        @if (s.Free == true)
+        {
+            <div>
+
+                <input type="checkbox" name="place" value="@s.PlaceId" />@s.PlaceId
+
+
+            </div>
+        }
+    }
+    <button name="id" value="@Model.Current.Id" class="btn btn-default">Choice</button>
+    
+</form>

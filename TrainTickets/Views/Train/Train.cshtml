@@ -1,0 +1,31 @@
+﻿@model IEnumerable<TrainStantionTimeViewModel>
+<form asp-action="Train" method="get">
+    <div class="form-actions no-color">
+        <p>
+            From: <input type="text" name="searchFrom" value="@ViewData["CurrentSta"]" />
+            Where: <input type="text" name="searchWhere" value="@ViewData["NextSta"]" />
+            Data: <input type="date" name="dateTime" min="@DateTime.Now.ToString("yyyy-MM-dd")" max="@DateTime.Now.AddMonths(+1).ToString("yyyy-MM-dd")" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Train">Back to Full List</a>
+        </p>
+    </div>
+</form>
+@if (Model == null)
+{
+    <p>No data</p>
+}
+else
+{
+<table>
+    @foreach (var s in Model)
+    {
+
+        <tr>
+            <td>@s.Trains.Name</td>
+            <td>@s.TimeSpan1</td>
+            <td>@s.TimeSpan2</td>
+            <td><a href="~/Train/Details?id=@s.Trains.Id&dateTime=@ViewData["Date"]">Details</a></td>
+        </tr>
+    }
+</table>
+}
