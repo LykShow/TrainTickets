@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using TrainTickets.Models;
 
 namespace TrainTickets.Data
 {
-    public class ApplicationContext:DbContext
+    public class ApplicationContext: IdentityDbContext<User>
     {
         public DbSet<Train> Trains { get; set; }
        public DbSet<Stantion> Stantions { get; set; }
