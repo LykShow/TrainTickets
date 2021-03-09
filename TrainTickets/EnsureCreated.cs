@@ -92,6 +92,7 @@ namespace TrainTickets
             foreach (var s in trainPlaces.Where(i => i.DateTime < DateTime.Today))
             {
                 s.Free = true;
+                s.UserId = null;
                 s.DateTime = DateTime.Today.AddMonths(+1);
 
             }

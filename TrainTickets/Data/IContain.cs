@@ -13,6 +13,7 @@ namespace TrainTickets.Data
         IQueryable<Place> Places { get; }
         IQueryable<TrainPlace> TrainPlaces { get; }
        IQueryable<TrainStantion> TrainStantions { get; }
+        IQueryable<User> Users { get; }
         Task AddTrainPlace(TrainPlace trainPlace);
         Task DeleteTrainPlace(TrainPlace trainPlace);
         void Save();

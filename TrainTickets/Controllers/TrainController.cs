@@ -22,7 +22,7 @@ namespace TrainTickets.Controllers
           
         }
 
-        public IActionResult Train(string searchFrom, string searchWhere, DateTime dateTime)
+        public IActionResult Train(string useid, string searchFrom, string searchWhere, DateTime dateTime)
         {
             ViewData["CurrentSta"] = searchFrom ?? "";
             ViewData["NextSta"] = searchWhere ?? "";
@@ -60,6 +60,7 @@ namespace TrainTickets.Controllers
                 }
                 trainStantionTimes = trainStantionTimeViews2;
             }
+            ViewBag.UserId = useid;
             return View(trainStantionTimes);
         }
         private IEnumerable<TrainPlace> Search(Stantion stantion1, Stantion stantion2, DateTime dateTime)
@@ -100,7 +101,7 @@ namespace TrainTickets.Controllers
 
         }
         [HttpGet]
-        public async Task<IActionResult> Details(int? id, DateTime dateTime)
+        public async Task<IActionResult> Details(int? id, string useid, DateTime dateTime)
         {
             
             if (id == null)
@@ -114,10 +115,11 @@ namespace TrainTickets.Controllers
 
             trainPlaceViewModel.places= trainPlaceViewModel.trainPlaces.Select(i=>i.Place);
             ViewBag.Date = dateTime1;
+            ViewBag.UserId = useid;
             return View(trainPlaceViewModel);
         }
         [HttpPost]
-        public async Task<IActionResult> Details(int id, int[] place , DateTime dateTime)
+        public async Task<IActionResult> Details(int id, int[] place , DateTime dateTime, string useid)
         {
             DateTime dateTime1 = ChangeDate(dateTime);
             var train = await contain.Trains.SingleAsync(s => s.Id == id);
@@ -126,6 +128,7 @@ namespace TrainTickets.Controllers
             {
                 var trainplace = await contain.TrainPlaces.SingleAsync(s => s.TrainId == id && s.PlaceId == i && s.DateTime == dateTime1);
                 trainplace.Free = false;
+                trainplace.UserId = useid;
                 await contain.UpdateTrainPlace(trainplace);
             }
             

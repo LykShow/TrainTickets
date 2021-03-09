@@ -10,6 +10,9 @@ namespace TrainTickets.Models
         public int Id { get; set; }
         public int TrainId { get; set; }
         public int PlaceId { get; set; }
+        public string UserId { get; set; }
+        public User User { get; set; }
+
         public Train Train { get; set; }
         public Place Place { get; set; }
 

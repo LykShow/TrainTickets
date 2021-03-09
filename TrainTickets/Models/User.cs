@@ -11,6 +11,6 @@ namespace TrainTickets.Models
         public string Name { get; set; }
         public int Age { get; set; }
         public string SoName { get; set; }
-        
+        public TrainPlace TrainPlace { get; set; }
     }
 }

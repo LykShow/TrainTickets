@@ -16,6 +16,7 @@ namespace TrainTickets.Data
         public DbSet<TrainPlace> TrainPlaces { get; set; }
        public DbSet<TrainStantion> TrainStantions { get; set; }
        
+       
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureCreated();

@@ -17,6 +17,8 @@ namespace TrainTickets.Data
 
         public IQueryable<TrainStantion> TrainStantions => context.TrainStantions;
 
+        public IQueryable<User> Users => context.Users;
+
         private ApplicationContext context;
         public EFRepository(ApplicationContext applicationContext)
         {

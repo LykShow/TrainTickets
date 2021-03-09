@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<form asp-action="Details" asp-route-dateTime="@ViewBag.Date" method="post">
+<form asp-action="Details" asp-route-dateTime="@ViewBag.Date" asp-route-useid ="@ViewBag.UserId" method="post">
     @foreach (var s in Model.trainPlaces)
     {
         @if (s.Free == true)

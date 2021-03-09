@@ -36,7 +36,7 @@ namespace TrainTickets.Controllers
                 {
                    
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Train", "Train");
+                    return RedirectToAction("Train", "Train", new { useid = _userManager.Users.Single(i => i.Email == model.Email).Id });
                 }
                 else
                 {
@@ -64,15 +64,10 @@ namespace TrainTickets.Controllers
                     await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
                 if (result.Succeeded)
                 {
+                   
+                     
+                      return RedirectToAction("Train", "Train" , new { useid = _userManager.Users.Single(i=>i.Email==model.Email).Id });
                     
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
-                        return RedirectToAction("Train", "Train");
-                    }
                 }
                 else
                 {

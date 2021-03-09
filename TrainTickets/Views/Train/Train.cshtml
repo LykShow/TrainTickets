@@ -2,7 +2,7 @@
 @{ 
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-    <form asp-action="Train" method="get">
+    <form asp-action="Train" asp-route-useid="@ViewBag.UserId" method="get">
         <div class="form-actions no-color">
             <p>
                 From: <input type="text" name="searchFrom" value="@ViewData["CurrentSta"]" />
@@ -27,7 +27,7 @@
                     <td>@s.Trains.Name</td>
                     <td>@s.TimeSpan1</td>
                     <td>@s.TimeSpan2</td>
-                    <td><a href="~/Train/Details?id=@s.Trains.Id&dateTime=@ViewData["Date"]">Details</a></td>
+                    <td><a href="~/Train/Details?id=@s.Trains.Id&dateTime=@ViewData["Date"]&useid=@ViewBag.UserId">Details</a></td>
                 </tr>
             }
         </table>
