@@ -9,6 +9,14 @@ namespace TrainTickets.Models.TrainViewModel
     public class RegistrViewModel
     {
         [Required]
+        [Display(Name = "Имя")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string SoName { get; set; }
+
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

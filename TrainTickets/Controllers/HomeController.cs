@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,22 +12,30 @@ namespace TrainTickets.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly UserManager<User> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+
+        public HomeController(UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
-            _logger = logger;
+            this.userManager = userManager;
+            this.roleManager = roleManager;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id)
         {
+            var use= HttpContext.User.Identity.Name;
+            var user = userManager.Users.Single(x => x.UserName == use);
+            if (string.IsNullOrEmpty(id))
+            {
+                id = user.Id;
+            }
+            ViewBag.UserId = id;
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

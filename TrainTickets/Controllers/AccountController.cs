@@ -29,7 +29,7 @@ namespace TrainTickets.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, Age = model.Age };
+                User user = new User { Name = model.Name, SoName= model.SoName, Email = model.Email, UserName = model.Email, Age = model.Age };
                
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
