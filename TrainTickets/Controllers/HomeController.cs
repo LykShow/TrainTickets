@@ -26,11 +26,12 @@ namespace TrainTickets.Controllers
         public IActionResult Index(string id)
         {
             var use= HttpContext.User.Identity.Name;
-            var user = userManager.Users.Single(x => x.UserName == use);
-            if (string.IsNullOrEmpty(id))
+            if (userManager.Users.Count() != 0 && string.IsNullOrEmpty(id))
             {
+                var user = userManager.Users.Single(x => x.UserName == use);
                 id = user.Id;
             }
+                                                      
             ViewBag.UserId = id;
             return View();
         }
